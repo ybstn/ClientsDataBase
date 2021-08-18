@@ -1,0 +1,294 @@
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto-Bold'), url(./Fonts/Roboto-Bold.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto-Medium'), url(./Fonts/Roboto-Medium.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto-Regular'), url(./Fonts/Roboto-Regular.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto-Light'), url(./Fonts/Roboto-Light.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: local('Roboto-Thin'), url(./Fonts/Roboto-Thin.ttf) format('truetype');
+    font-style: normal;
+    font-weight: 100;
+}
+/* Provide sufficient contrast against white background */
+a {
+    color: #0366d6;
+}
+
+code {
+    color: #E01A76;
+}
+.TestRow
+{
+    background-color:azure;
+   
+    height:40vh;
+}
+body {
+    font-family: Roboto;
+}
+.clientsWindow {
+/*    background-image: url("/Background.jpeg");*/
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+}
+.spinner {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: all;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,1);
+}
+.spinnerText {
+    pointer-events: none;
+    margin-top: 0.5vw;
+    padding: 0.5vw;
+    color: white;
+    background-color: #17a2b8;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+#modal-root {
+    position: relative;
+    z-index: 999;
+}
+
+.invalid-field {
+    border-color: #dc3545;
+    color: #dc3545;
+    background-color: white;
+}
+
+.MenuButton {
+    height: 10vh;
+    width: 7vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 35%;
+}
+
+.buttngroup {
+    float: right;
+}
+
+.btnShowRecords {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 5vh;
+}
+
+.ControlsPanel {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10vh;
+    background-color: rgba(255,255,255,1);
+    border: solid 1px black;
+    border-radius: 2px 2px 0px 0px;
+    z-index: 99;
+}
+
+.ControlsPanelListComensator {
+    width: 100%;
+    height: 10vh;
+}
+
+.btnControlsPanel, .btnControlsPanelTwoButt {
+    width: 50%;
+    height: 7vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 12%;
+}
+
+.btnControlsPanelTwoButt {
+    background-size: 9%;
+}
+
+.btnEdit {
+    background-image: url("/Edit.png");
+}
+
+.btnDelete {
+    background-image: url("/Delete.png");
+}
+
+.btnAdd {
+    background-image: url("/Add.png");
+}
+
+.btnBack {
+    background-image: url("/backWhite.png");
+}
+
+.AddFormImage {
+    height: 15vh;
+    margin-bottom: 2vh;
+}
+
+.PhotoLabel {
+    display: flex;
+    align-items: center;
+}
+
+.ZoomedImage {
+    width: 100%;
+}
+
+.ClientRow {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: #343a40;
+}
+
+.ClientListAvatar {
+    /*    width: 6vw;*/
+    height: 10vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ClientPhoneColumn {
+}
+
+.PhoneDiv {
+}
+
+.RecordCommentInput {
+    width: 100%;
+}
+
+.ClientInfoAvatar {
+    width: 12vw;
+}
+
+.RecordRow {
+    border-width: 0px 0px 1px 0px;
+    border-style: solid;
+    border-color: #343a40;
+}
+
+.RecordsClientInfoText {
+    font-size: 2rem;
+}
+.LoginDivCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+@media screen and (max-width:800px) {
+    .btnShowRecords {
+        width: 17vw;
+        height: 6.5vh;
+    }
+
+    .MenuButton {
+        height: 7vh;
+        width: 11vw;
+        background-size: 50%;
+    }
+
+    .btnControlsPanel {
+        background-size: 33%;
+    }
+
+    .btnControlsPanelTwoButt {
+        background-size: 27%;
+    }
+}
+
+@media screen and (max-width:455px) {
+    .btnControlsPanel {
+        width: 100%;
+        height: 7vh;
+        background-size: 33%;
+    }
+
+    .btnControlsPanelTwoButt {
+        background-size: 37%;
+    }
+
+    .btnShowRecords {
+        width: 31vw;
+        height: 8vh;
+    }
+
+    .MenuButton {
+        height: 7vh;
+        width: 12vw;
+        background-size: 70%;
+    }
+
+    .RecordsClientInfoText {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-height:455px) {
+    .MenuButton {
+        height: 14vh;
+        background-size: 50%;
+    }
+
+    .ClientListAvatar {
+        height: 16vh;
+    }
+
+    .ControlsPanel {
+        height: 14vh
+    }
+
+    .ControlsPanelListComensator {
+        height: 14vh;
+    }
+
+    .btnShowRecords {
+        height: 12vh;
+    }
+
+    .btnControlsPanel, .btnControlsPanelTwoButt {
+        height: 12vh;
+        background-size: 24%;
+    }
+
+    .btnControlsPanelTwoButt {
+        background-size: 16%;
+    }
+}

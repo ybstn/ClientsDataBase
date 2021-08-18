@@ -1,0 +1,4 @@
+﻿User-agent: *
+
+Host: www.db.braidcode.ru
+Sitemap: https://db.braidcode.ru/public/Sitemap.xml
