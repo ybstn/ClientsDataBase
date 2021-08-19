@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { ModalBody, ModalFooter } from 'reactstrap';
-import { Form, FormGroup, Label, Input, Button, Col, Alert} from 'reactstrap';
+import { Form, FormGroup, Button, Col} from 'reactstrap';
 
 export class ClientDeleteForm extends Component {
     constructor(props) {

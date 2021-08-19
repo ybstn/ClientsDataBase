@@ -82,7 +82,6 @@ export class ClientRecs extends Component {
         trackPromise(
             this.loadClientInfoPromise().then(function (datums) {
                 var cientInfo = JSON.parse(datums);
-
                 if (cientInfo) {
                     that.setState({ clientInfo: cientInfo });
                 }
@@ -112,6 +111,7 @@ export class ClientRecs extends Component {
         });
     }
     componentDidMount() {
+       
         this.loadClientInfo();
         this.loadData();
     }

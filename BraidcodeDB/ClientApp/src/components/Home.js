@@ -76,7 +76,7 @@ export class Home extends Component {
                 if (data) {
                     data.sort((a, b) => a.name.localeCompare(b.name));
                     that.setState({ clients: data, clientsInitial: data });
-                    if (that.state.addedClientId != "")
+                    if (that.state.addedClientId !== "")
                     {
                         that.props.history.push('/ClientRecs', { usId: that.state.addedClientId });
                     }
@@ -103,7 +103,6 @@ export class Home extends Component {
         if (client) {
             this.toggle();
             var that = this;
-            var id = "";
             trackPromise(
                 this.AddClientPromise(client).then(function (value) {
                     

@@ -1,5 +1,5 @@
-# WebMap
+# asp.net core + react web braid studio clients database
 
-Home page must look like this:
+
 
 
