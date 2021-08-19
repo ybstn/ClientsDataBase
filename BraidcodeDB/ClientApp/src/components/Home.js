@@ -22,7 +22,8 @@ export class Home extends Component {
             clientsInitial: [],
             modal: false,
             seltedClientId: "",
-            loading: false
+            loading: false,
+            addedClientId:""
         };
         this.SelectClient = this.SelectClient.bind(this);
         this.toggle = this.toggle.bind(this);
@@ -43,6 +44,7 @@ export class Home extends Component {
     }
 
     loadData() {
+        
         return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
         var requestHeader = authHeader();
@@ -52,6 +54,7 @@ export class Home extends Component {
             xhr.onload = function () {
                 if (this.status >= 200 && this.status < 300) {
                     //handleResponse(xhr);
+                   
                     resolve(xhr.responseText);
                 } else {
                     reject({
@@ -73,6 +76,10 @@ export class Home extends Component {
                 if (data) {
                     data.sort((a, b) => a.name.localeCompare(b.name));
                     that.setState({ clients: data, clientsInitial: data });
+                    if (that.state.addedClientId != "")
+                    {
+                        that.props.history.push('/ClientRecs', { usId: that.state.addedClientId });
+                    }
                 }
             })
         );
@@ -80,7 +87,9 @@ export class Home extends Component {
     componentDidMount() {
         this.updateData();
         this.setState({ loading: false });
+       
     }
+
     FilterList(e) {
         let updatedList = this.state.clientsInitial;
         updatedList = updatedList.filter(item => {
@@ -94,9 +103,12 @@ export class Home extends Component {
         if (client) {
             this.toggle();
             var that = this;
+            var id = "";
             trackPromise(
-                this.AddClientPromise(client).then(function () {
+                this.AddClientPromise(client).then(function (value) {
+                    
                     that.updateData();
+                    that.setState({ addedClientId: value.id });
                 })
             );
         }
@@ -121,7 +133,7 @@ export class Home extends Component {
             xhr.setRequestHeader("Authorization", requestHeader);
             xhr.onload = function () {
                 if (this.status >= 200 && this.status < 300) {
-                    resolve(handleResponse(xhr));
+                    resolve(JSON.parse(xhr.responseText));
                 } else {
                     reject({
                         status: this.status,
@@ -213,40 +225,40 @@ export class Home extends Component {
         var selClientId = this.state.seltedClientId;
         var edit = this.onEditClient;
         var isAnySel = (selClientId === "") ? false : true;
+     
+            return <div >
 
-        return <div >
-           
-            <Row className="justify-content-center py-2 row border-bottom border-dark" >
-                <Col lg={10} xs={10} className="align-self-center">
-                    <Input type="text"
-                        id="nameInput"
-                        placeholder="поиск"
-                        onChange={this.FilterList} />
-                </Col>
-                <Col lg={2} xs={2}>
-                    <ButtonGroup className="buttngroup" size="sm">
-                        <Button color='info' className="MenuButton btnAdd" onClick={this.toggle}></Button>
-                    </ButtonGroup>
-                </Col>
-            </Row>
-            <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-               
-                <ModalHeader toggle={this.toggle}>Добавление клиента</ModalHeader>
-                <ClientForm onClientSubmit={this.onAddClient} defaultPhoto={defaultClientImage} onCloseModal={this.toggle} />
-            </Modal>
+                <Row className="justify-content-center py-2 row border-bottom border-dark" >
+                    <Col lg={10} xs={10} className="align-self-center">
+                        <Input type="text"
+                            id="nameInput"
+                            placeholder="поиск"
+                            onChange={this.FilterList} />
+                    </Col>
+                    <Col lg={2} xs={2}>
+                        <ButtonGroup className="buttngroup" size="sm">
+                            <Button color='info' className="MenuButton btnAdd" onClick={this.toggle}></Button>
+                        </ButtonGroup>
+                    </Col>
+                </Row>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
 
-            <div>
-                {
-                    this.state.clients.map(function (client) {
-                        var isSel = (selClientId === client.id) ? true : false;
+                    <ModalHeader toggle={this.toggle}>Добавление клиента</ModalHeader>
+                    <ClientForm onClientSubmit={this.onAddClient} defaultPhoto={defaultClientImage} onCloseModal={this.toggle} />
+                </Modal>
 
-                        return <Client key={client.id} client={client} onEdit={edit} onRemove={remove} SelectClient={contrPanel} selectClientId={selClientId} isSelected={isSel} onLoadData={loaddata} />
-                    })
-                }
-                <div className="ControlsPanelListComensator py-2" style={{ display: isAnySel ? 'block' : 'none' }}></div>
+                <div>
+                    {
+                        this.state.clients.map(function (client) {
+                            var isSel = (selClientId === client.id) ? true : false;
+
+                            return <Client key={client.id} client={client} onEdit={edit} onRemove={remove} SelectClient={contrPanel} selectClientId={selClientId} isSelected={isSel} onLoadData={loaddata} />
+                        })
+                    }
+                    <div className="ControlsPanelListComensator py-2" style={{ display: isAnySel ? 'block' : 'none' }}></div>
+                </div>
+
             </div>
-           
-        </div>
         
     }
 }
@@ -371,7 +383,6 @@ class Client extends React.Component {
         }
     }
     render() {
-        //alert(Object.values(this.state.data));
         let nowDateTemp = new Date(Date.now());
         let MM = ((nowDateTemp.getMonth() + 1) < 10 ? "0" : "") + (nowDateTemp.getMonth() + 1);
         let dd = (nowDateTemp.getDate() < 10 ? "0" : "") + nowDateTemp.getDate();
