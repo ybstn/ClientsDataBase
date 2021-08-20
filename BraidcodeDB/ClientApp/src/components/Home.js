@@ -87,7 +87,11 @@ export class Home extends Component {
     componentDidMount() {
         this.updateData();
         this.setState({ loading: false });
-       
+
+        if (document.querySelector('body').classList.contains('modal-open') && !this.state.modal) {
+            document.querySelector('body').classList.remove('modal-open');
+        }
+        
     }
 
     FilterList(e) {
