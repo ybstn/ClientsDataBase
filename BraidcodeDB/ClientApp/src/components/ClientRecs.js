@@ -28,11 +28,23 @@ export class ClientRecs extends Component {
         this.loadClientInfoPromise = this.loadClientInfoPromise.bind(this);
     }
     ZoomToggle() {
+        if (!this.state.ImgZoom && !document.body.classList.contains("modal-open")) {
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.ImgZoom && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             ImgZoom: !this.state.ImgZoom
         });
     }
     toggle() {
+        if (!this.state.modal && !document.body.classList.contains("modal-open")) {
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.modal && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             modal: !this.state.modal
         });
@@ -111,7 +123,9 @@ export class ClientRecs extends Component {
         });
     }
     componentDidMount() {
-       
+        if (document.querySelector('body').classList.contains('modal-open')) {
+            document.querySelector('body').classList.remove('modal-open');
+        }
         this.loadClientInfo();
         this.loadData();
     }
@@ -328,16 +342,34 @@ class ClientRec extends React.Component {
     }
     ZoomToggle(e) {
         e.stopPropagation();
+        if (!this.state.ImgZoom && !document.body.classList.contains("modal-open")) {
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.ImgZoom && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             ImgZoom: !this.state.ImgZoom
         });
     }
     toggle() {
+        if (!this.state.showEditModal && !document.body.classList.contains("modal-open")) {
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.showEditModal && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             showEditModal: !this.state.showEditModal
         });
     }
     toggleDelete() {
+        if (!this.state.showDeleteModal && !document.body.classList.contains("modal-open")) {
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.showDeleteModal && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             showDeleteModal: !this.state.showDeleteModal
         });

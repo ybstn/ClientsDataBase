@@ -38,6 +38,12 @@ export class Home extends Component {
         this.AddClientPromise = this.AddClientPromise.bind(this);
     }
     toggle() {
+        if (!this.state.modal && !document.body.classList.contains("modal-open")) {
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.modal && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             modal: !this.state.modal
         });
@@ -78,19 +84,22 @@ export class Home extends Component {
                     that.setState({ clients: data, clientsInitial: data });
                     if (that.state.addedClientId !== "")
                     {
-                        that.props.history.push('/ClientRecs', { usId: that.state.addedClientId });
+
+                       that.props.history.push('/ClientRecs', { usId: that.state.addedClientId });
+                        
+                       
                     }
                 }
             })
         );
     }
     componentDidMount() {
+        //if (document.querySelector('body').classList.contains('modal-open')) {
+        //    document.querySelector('body').classList.remove('modal-open');
+        //}
         this.updateData();
         this.setState({ loading: false });
-
-        if (document.querySelector('body').classList.contains('modal-open') && !this.state.modal) {
-            document.querySelector('body').classList.remove('modal-open');
-        }
+    
         
     }
 
@@ -109,9 +118,10 @@ export class Home extends Component {
             var that = this;
             trackPromise(
                 this.AddClientPromise(client).then(function (value) {
-                    
-                    that.updateData();
                     that.setState({ addedClientId: value.id });
+                    that.updateData();
+                    
+                   
                 })
             );
         }
@@ -285,16 +295,34 @@ class Client extends React.Component {
     }
 
     toggle() {
+        if (!this.state.modal && !document.body.classList.contains("modal-open")) {
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.modal && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             modal: !this.state.modal
         });
     }
     toggleRec() {
+        if (!this.state.recModal && !document.body.classList.contains("modal-open")){
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.recModal && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             recModal: !this.state.recModal
         });
     }
     toggleDelete() {
+        if (!this.state.deleteClientModal && !document.body.classList.contains("modal-open")){
+            document.body.classList.add("modal-open");
+        }
+        if (this.state.deleteClientModal && document.body.classList.contains("modal-open")) {
+            document.body.classList.remove("modal-open");
+        }
         this.setState({
             deleteClientModal: !this.state.deleteClientModal
         });
@@ -313,7 +341,7 @@ class Client extends React.Component {
         return true;
     }
     componentDidMount() {
-
+       
     }
 
     componentDidUpdate() {
