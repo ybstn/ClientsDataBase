@@ -80,7 +80,7 @@ export class ClientForm extends Component {
         
         e.preventDefault();
         if (this.validate()) {
-        
+             
             let clientName = this.state.name;
             let clientPhone = this.state.phone.length === 0 ? "+7" : this.state.phone;
             let clientPhotoUrl = this.state.imageSrc;
