@@ -4,7 +4,7 @@
 
 Страница регистрации мастера:
 
-<img src="images/LoginForm.png"/>
+<img style="width:33%" src="images/LoginForm.png"/>
 
 Главная страница со списком клиентов и кнопкой добавления нового клиента:
 
